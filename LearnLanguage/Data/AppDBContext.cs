@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LearnLanguage.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace LearnLanguage.Models
+namespace LearnLanguage.Data
 {
-    public class ApplicationDBContext:DbContext
+    public class AppDBContext : DbContext
     {
-        public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options)
+        public AppDBContext(DbContextOptions<AppDBContext> options)
             : base(options)
         { }
 
@@ -17,4 +18,6 @@ namespace LearnLanguage.Models
         public DbSet<Level> Levels { get; set; }
 
     }
+
+
 }
