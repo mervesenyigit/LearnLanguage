@@ -5,8 +5,8 @@
         public int Id { get; set; }
         public string Src { get; set; }
 
-        public int ContentId { get; set; }
+        public int QuestionId { get; set; }
 
-        public Content Content { get; set; } = new Content();
+        public Question Question { get; set; }
     }
 }

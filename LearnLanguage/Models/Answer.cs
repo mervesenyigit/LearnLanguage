@@ -1,9 +1,9 @@
 ﻿namespace LearnLanguage.Models
 {
-    public class Video
+    public class Answer
     {
         public int Id { get; set; }
-        public string Src { get; set; }
+        public string Name { get; set; }
 
         public int QuestionId { get; set; }
 
