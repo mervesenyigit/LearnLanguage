@@ -1,17 +1,20 @@
-﻿using Duende.IdentityServer.EntityFramework.Options;
-using LearnLanguage.Models;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace LearnLanguage.Data
+namespace LearnLanguage.Models
 {
-    public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
+    public class ApplicationDBContext:DbContext
     {
-        public ApplicationDbContext(DbContextOptions options, IOptions<OperationalStoreOptions> operationalStoreOptions)
-            : base(options, operationalStoreOptions)
-        {
+        public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options)
+            : base(options)
+        { }
 
-        }
+        public DbSet<Skill> Skills { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
+        public DbSet<Content> Contents { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Video> Videos { get; set; }
+        public DbSet<Voice> Voices { get; set; }
+        public DbSet<Level> Levels { get; set; }
+
     }
 }
