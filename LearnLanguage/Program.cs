@@ -1,9 +1,10 @@
-using LearnLanguage.Data;
+﻿using LearnLanguage.Data;
 using LearnLanguage.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,21 @@ builder.Services.AddAuthentication()
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<LearnLanguageContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("LearnLanguageContext") ?? throw new InvalidOperationException("Connection string 'LearnLanguageContext' not found.")));
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("corsapp",
+                          builder =>
+                          {
+                              builder.AllowAnyHeader()
+                                       .AllowAnyMethod()
+                                       .SetIsOriginAllowed((x) => true)
+                                       .AllowCredentials();
+
+                          });
+});
 
 var app = builder.Build();
 
@@ -45,7 +61,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseIdentityServer();
 app.UseAuthorization();
-
+app.UseCors("corsapp");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");

@@ -11,59 +11,55 @@ namespace LearnLanguage.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LevelsController : ControllerBase
+    public class SubjectsController : ControllerBase
     {
         private readonly LearnLanguageContext _context;
 
-        public LevelsController(LearnLanguageContext context)
+        public SubjectsController(LearnLanguageContext context)
         {
             _context = context;
         }
 
-        // GET: api/Levels
+        // GET: api/Subjects
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Level>>> GetLevel()
+        public async Task<ActionResult<IEnumerable<Subject>>> GetSubject()
         {
-            var levels = await _context.Level.ToListAsync();
-
-            if (levels == null || levels.Count == 0)
-            {
-                return NotFound();
-            }
-
-            return levels;
-        }
-
-
-        // GET: api/Levels/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Level>> GetLevel(int id)
-        {
-          if (_context.Level == null)
+          if (_context.Subject == null)
           {
               return NotFound();
           }
-            var level = await _context.Level.FindAsync(id);
+            return await _context.Subject.ToListAsync();
+        }
 
-            if (level == null)
+        // GET: api/Subjects/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Subject>> GetSubject(int id)
+        {
+          if (_context.Subject == null)
+          {
+              return NotFound();
+          }
+            var subject = await _context.Subject.FindAsync(id);
+
+            if (subject == null)
             {
                 return NotFound();
             }
 
-            return level;
+            return subject;
         }
 
-        // PUT: api/Levels/5
+        // PUT: api/Subjects/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLevel(int id, Level level)
+        public async Task<IActionResult> PutSubject(int id, Subject subject)
         {
-            if (id != level.Id)
+            if (id != subject.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(level).State = EntityState.Modified;
+            _context.Entry(subject).State = EntityState.Modified;
 
             try
             {
@@ -71,7 +67,7 @@ namespace LearnLanguage.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LevelExists(id))
+                if (!SubjectExists(id))
                 {
                     return NotFound();
                 }
@@ -84,44 +80,44 @@ namespace LearnLanguage.Controllers
             return NoContent();
         }
 
-        // POST: api/Levels
+        // POST: api/Subjects
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Level>> PostLevel(Level level)
+        public async Task<ActionResult<Subject>> PostSubject(Subject subject)
         {
-          if (_context.Level == null)
+          if (_context.Subject == null)
           {
-              return Problem("Entity set 'LearnLanguageContext.Level'  is null.");
+              return Problem("Entity set 'LearnLanguageContext.Subject'  is null.");
           }
-            _context.Level.Add(level);
+            _context.Subject.Add(subject);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLevel", new { id = level.Id }, level);
+            return CreatedAtAction("GetSubject", new { id = subject.Id }, subject);
         }
 
-        // DELETE: api/Levels/5
+        // DELETE: api/Subjects/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLevel(int id)
+        public async Task<IActionResult> DeleteSubject(int id)
         {
-            if (_context.Level == null)
+            if (_context.Subject == null)
             {
                 return NotFound();
             }
-            var level = await _context.Level.FindAsync(id);
-            if (level == null)
+            var subject = await _context.Subject.FindAsync(id);
+            if (subject == null)
             {
                 return NotFound();
             }
 
-            _context.Level.Remove(level);
+            _context.Subject.Remove(subject);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool LevelExists(int id)
+        private bool SubjectExists(int id)
         {
-            return (_context.Level?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Subject?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
