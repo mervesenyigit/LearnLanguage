@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\components\Levels\" />
+    <Folder Include="ClientApp\src\components\Subjects\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

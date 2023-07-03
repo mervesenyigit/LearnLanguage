@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Levels() {
+function Index() {
     const [levels, setLevels] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -38,4 +38,4 @@ function Levels() {
     );
 }
 
-export default Levels;
+export default Index;
