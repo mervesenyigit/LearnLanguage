@@ -13,5 +13,6 @@ namespace LearnLanguage.Data
         {
 
         }
+        public DbSet<LearnLanguage.Models.Skill> Skill { get; set; } = default!;
     }
 }

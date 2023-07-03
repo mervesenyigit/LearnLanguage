@@ -87,7 +87,7 @@ namespace LearnLanguage.Controllers
         // POST: api/Levels
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Level>> PostLevel(Level level)
+        public async Task<ActionResult<Level>> PostLevel([FromBody]Level level)
         {
           if (_context.Level == null)
           {
@@ -97,6 +97,7 @@ namespace LearnLanguage.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetLevel", new { id = level.Id }, level);
+         
         }
 
         // DELETE: api/Levels/5
