@@ -6,6 +6,7 @@ import { Layout } from './components/Layout';
 import './custom.css';
 import Index from './components/Levels/Index';
 import Create from './components/Levels/Create';
+import Edit from './components/Levels/Edit';
 
 export default class App extends Component {
     static displayName = App.name;
@@ -20,11 +21,9 @@ export default class App extends Component {
                     })}
                     <Route path="/levels" element={<Index />} />
                     <Route path="/create" element={<Create />} />
-                  
-                    
                     
                 </Routes>
-           
+                <Create />
             </Layout>
         );
     }

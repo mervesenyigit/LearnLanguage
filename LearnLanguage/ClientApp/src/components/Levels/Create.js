@@ -7,7 +7,6 @@ function Create({ levels, setLevels }) {
 
     const [level, setLevel] = useState({
         name: '',
-        description: ''
     });
     const navigate = useNavigate();
 
