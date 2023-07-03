@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 function Index() {
     const [levels, setLevels] = useState([]);
@@ -12,9 +11,13 @@ function Index() {
 
     const fetchLevels = async () => {
         try {
-            const response = await axios.get('https://localhost:44463/api/Levels');
-            setLevels(response.data);
-            console.log(response.data);
+            const response = await fetch('https://localhost:44463/api/Levels');
+            if (response.ok) {
+                const data = await response.json();
+                setLevels(data);
+            } else {
+                console.error('Error fetching levels:', response.status);
+            }
             setIsLoading(false);
         } catch (error) {
             console.error('Error fetching levels:', error);
@@ -22,15 +25,22 @@ function Index() {
         }
     };
 
+    const handleDelete = () => {
+        fetchLevels(); // Fetch updated levels after deletion
+    };
+
     return (
         <div>
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
-                    <ul>
-                        <li>Levels</li>
+                <ul>
+                    <li>Levels</li>
                     {levels.map((level) => (
-                        <li key={level.id}>{level.name}</li>
+                        <li key={level.id}>
+                            {level.name}
+                            <a href={`/levels/${level.id}`}>Edit</a>
+                        </li>
                     ))}
                 </ul>
             )}

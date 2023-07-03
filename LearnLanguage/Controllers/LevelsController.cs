@@ -56,7 +56,7 @@ namespace LearnLanguage.Controllers
         // PUT: api/Levels/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutLevel(int id, Level level)
+        public async Task<IActionResult> PutLevel(int id, [FromBody]Level level)
         {
             if (id != level.Id)
             {
@@ -87,7 +87,7 @@ namespace LearnLanguage.Controllers
         // POST: api/Levels
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Level>> PostLevel(Level level)
+        public async Task<ActionResult<Level>> PostLevel([FromBody]Level level)
         {
           if (_context.Level == null)
           {
