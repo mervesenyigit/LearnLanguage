@@ -21,9 +21,10 @@ export default class App extends Component {
                     })}
                     <Route path="/levels" element={<Index />} />
                     <Route path="/create" element={<Create />} />
+                    <Route path="/levels/:levelId" element={<Edit />} />
                     
                 </Routes>
-                <Create />
+              
             </Layout>
         );
     }

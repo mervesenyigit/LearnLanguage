@@ -44,6 +44,8 @@ function Index() {
                                 levels={levels}
                                 
                             />
+                            <a href={`/levels/${level.id}`}>Edit
+                            </a>
                            
                         </li>
                     ))}
