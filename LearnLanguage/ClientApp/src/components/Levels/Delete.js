@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Delete({ levelId, setLevels, levels }) {
@@ -35,6 +35,11 @@ function Delete({ levelId, setLevels, levels }) {
         </div>
     );
 }
+
+
+
+
+export default Delete;
 
 
 
